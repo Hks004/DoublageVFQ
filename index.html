@@ -80,7 +80,7 @@
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-14 rounded-lg overflow-hidden bg-slate-700 flex-shrink-0">
                                     <template x-if="movie.posterPath">
-                                        <img :src="'https://image.tmdb.org/t/p/w92' + movie.posterPath" :alt="movie.translatedName" class="w-full h-full object-cover">
+                                        <img :src="'https://image.tmdb.org/t/p/w92' + movie.posterPath" :alt="movie.translatedName" loading="lazy" class="w-full h-full object-cover">
                                     </template>
                                 </div>
                                 <div>
@@ -116,7 +116,7 @@
                         <div @click="navigate('movie', movie.movieId)" class="cursor-pointer group">
                             <div class="aspect-[2/3] bg-slate-800 rounded-xl border border-slate-700 overflow-hidden relative shadow-xl group-hover:border-blue-500 transition-all group-hover:-translate-y-1">
                                 <template x-if="movie.posterPath">
-                                    <img :src="'https://image.tmdb.org/t/p/w500' + movie.posterPath" :alt="movie.translatedName" class="absolute inset-0 w-full h-full object-cover">
+                                    <img :src="'https://image.tmdb.org/t/p/w500' + movie.posterPath" :alt="movie.translatedName" loading="eager" class="absolute inset-0 w-full h-full object-cover">
                                 </template>
                                 <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent text-white">
                                     <p class="text-sm font-bold line-clamp-2" x-text="movie.translatedName"></p>
@@ -180,7 +180,7 @@
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-14 rounded-lg overflow-hidden bg-slate-700 flex-shrink-0">
                                 <template x-if="movie.posterPath">
-                                    <img :src="'https://image.tmdb.org/t/p/w92' + movie.posterPath" :alt="movie.translatedName" class="w-full h-full object-cover">
+                                    <img :src="'https://image.tmdb.org/t/p/w92' + movie.posterPath" :alt="movie.translatedName" loading="lazy" class="w-full h-full object-cover">
                                 </template>
                             </div>
                             <div>
@@ -222,7 +222,7 @@
                 <div class="lg:col-span-1">
                     <div class="aspect-[2/3] bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-2xl sticky top-28">
                         <template x-if="selectedMovie?.posterPath">
-                            <img :src="'https://image.tmdb.org/t/p/w500' + selectedMovie.posterPath" :alt="selectedMovie.translatedName" class="w-full h-full object-cover">
+                            <img :src="'https://image.tmdb.org/t/p/w500' + selectedMovie.posterPath" :alt="selectedMovie.translatedName" loading="eager" class="w-full h-full object-cover">
                         </template>
                         <template x-if="!selectedMovie?.posterPath">
                             <div class="w-full h-full flex items-center justify-center border-dashed border border-slate-700">
@@ -343,7 +343,7 @@
 
                 async init() {
                     try {
-                        const [r1, r2] = await Promise.all([fetch('index.json?v=1.0'), fetch('cast.json?v=1.0')]);
+                        const [r1, r2] = await Promise.all([fetch('index.json?v=1.1'), fetch('cast.json?v=1.1')]);
                         this.movies = await r1.json();
                         this.castData = await r2.json();
                         this._buildCaches();
