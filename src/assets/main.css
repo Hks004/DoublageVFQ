@@ -1,0 +1,29 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root { --bleu-qc: #003399; }
+
+body {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item-vfq {
+  background: #1e293b;
+  border: 1px solid #334155;
+  transition: all 0.2s ease;
+}
+
+.list-item-vfq:hover {
+  border-color: var(--bleu-qc);
+  transform: translateX(4px);
+}
+
+select option {
+  background: #1e293b;
+  color: white;
+}
