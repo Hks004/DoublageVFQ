@@ -4,6 +4,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { movies } from '../stores/vfq'
 
 const props = defineProps({ type: { type: String, default: 'Film' } })
+console.log('type recu:', props.type, 'route:', useRoute().path)
 const router = useRouter()
 const route = useRoute()
 const sortBy = ref('default')
@@ -12,10 +13,17 @@ const visibleCount = ref(100)
 const sentinel = ref(null)
 let observer = null
 
-const title = computed(() => props.type === 'Film' ? 'Répertoire des Films' : 'Répertoire des Séries')
+const currentType = computed(() => props.type || 'Film')
+
+const title = computed(() => {
+  if (currentType.value === 'Film') return 'Répertoire des Films'
+  if (currentType.value.includes('Série')) return 'Répertoire des Séries'
+  if (currentType.value.includes('Animation')) return 'Répertoire Animation/Jeunesse'
+  return 'Répertoire'
+})
 
 const filtered = computed(() => {
-  let f = movies.value.filter(m => m.extra.projectType?.toLowerCase().includes(props.type.toLowerCase()))
+  let f = movies.value.filter(m => m.extra.projectType === currentType.value)
   if (yearFilter.value) f = f.filter(m => m.extra.theatricalRelease?.split(' ').pop().includes(yearFilter.value))
   if (sortBy.value !== 'default') {
     f = [...f].sort((a, b) => {

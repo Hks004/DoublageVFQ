@@ -12,8 +12,9 @@ const router = createRouter({
   scrollBehavior() { return { top: 0 } },
   routes: [
     { path: '/', component: HomeView },
-    { path: '/films', component: FilmsView },
-    { path: '/series', component: FilmsView, props: { type: 'Série' } },
+    { path: '/films', component: FilmsView, props: { type: 'Film' } },
+    { path: '/series', component: FilmsView, props: { type: 'Série télé' } },
+    { path: '/animation', component: FilmsView, props: { type: 'Animation/jeunesse' } },
     { path: '/comediens', component: ComediensView },
     { path: '/film/:id', component: FilmDetailView },
     { path: '/doubleur/:name', component: DoubleurView },

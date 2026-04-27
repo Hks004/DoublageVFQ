@@ -13,12 +13,6 @@ onMounted(async () => {
   loaded.value = true
 })
 
-function doSearch() {
-  if (search.value.trim()) {
-    router.push({ path: '/recherche', query: { q: search.value } })
-  }
-}
-
 function clearSearch() {
   search.value = ''
   router.push('/')
@@ -43,14 +37,17 @@ function watchSearch(val) {
         </router-link>
 
         <div class="flex p-1 rounded-full border border-slate-700 overflow-x-auto max-w-full" style="background:#1e293b">
-          <router-link to="/" custom v-slot="{ navigate, isActive }">
-            <button @click="navigate" :style="isActive && route.path === '/' ? 'background:#003399;color:white' : 'color:#94a3b8'" class="px-5 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap hover:text-white">Accueil</button>
+          <router-link to="/" custom v-slot="{ navigate }">
+            <button @click="navigate" :style="route.path === '/' ? 'background:#003399;color:white' : 'color:#94a3b8'" class="px-5 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap hover:text-white">Accueil</button>
           </router-link>
           <router-link to="/films" custom v-slot="{ navigate }">
             <button @click="navigate" :style="route.path === '/films' ? 'background:#003399;color:white' : 'color:#94a3b8'" class="px-5 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap hover:text-white">Films</button>
           </router-link>
           <router-link to="/series" custom v-slot="{ navigate }">
             <button @click="navigate" :style="route.path === '/series' ? 'background:#003399;color:white' : 'color:#94a3b8'" class="px-5 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap hover:text-white">Séries</button>
+          </router-link>
+          <router-link to="/animation" custom v-slot="{ navigate }">
+            <button @click="navigate" :style="route.path === '/animation' ? 'background:#003399;color:white' : 'color:#94a3b8'" class="px-5 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap hover:text-white">Animation</button>
           </router-link>
           <router-link to="/comediens" custom v-slot="{ navigate }">
             <button @click="navigate" :style="route.path === '/comediens' ? 'background:#003399;color:white' : 'color:#94a3b8'" class="px-5 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap hover:text-white">Comédiens</button>
